@@ -1,8 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
-const app = express();
 
+const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -13,7 +13,9 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(PORT, (err) => {
-  if (err) console.error("Error: ", err);
-  else console.log(`listening on port http://localhost:${PORT}`);
-});
+// app.listen(PORT, (err) => {
+//   if (err) console.error("Error: ", err);
+//   else console.log(`listening on port http://localhost:${PORT}`);
+// });
+
+module.exports = app;

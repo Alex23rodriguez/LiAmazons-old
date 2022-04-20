@@ -1,0 +1,28 @@
+const mongodb = require("mongodb");
+const dotenv = require("dotenv");
+
+const app = require("./server.js");
+const { GamesDAO } = require("./dao/gamesDAO.js");
+
+dotenv.config();
+const MongoClient = mongodb.MongoClient;
+
+const port = process.env.PORT || 8000;
+
+MongoClient.connect(process.env.DB_URI, {
+  maxPoolSize: 50,
+  wtimeoutMS: 2500,
+  useNewUrlParser: true,
+})
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  })
+  .then(async (client) => {
+    await GamesDAO.injectDB(client);
+    console.log("connected to database");
+    app.listen(port, (err) => {
+      if (err) console.error("Error: ", err);
+      else console.log(`listening on http://localhost:${port}`);
+    });
+  });
