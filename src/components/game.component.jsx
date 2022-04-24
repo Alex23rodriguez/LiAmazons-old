@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import GameDataService from "../services/game.service.js";
+import Board from "./board.component.jsx";
 
 const Game = () => {
   const [game, setGame] = useState();
@@ -8,7 +9,7 @@ const Game = () => {
 
   const getGame = () => {
     if (id === "rnd") {
-      console.log(`no id param. getting random game`);
+      console.log(`getting random game`);
       GameDataService.getRnd()
         .then((response) => {
           setGame(response.data);
@@ -32,7 +33,13 @@ const Game = () => {
     getGame();
   }, []);
 
-  return game ? <div>{game.moves}</div> : <div>Game not found</div>;
+  return game ? (
+    <div>
+      <Board size={10} />
+    </div>
+  ) : (
+    <div>Game not found</div>
+  );
   //   return { json: "test" };
 };
 

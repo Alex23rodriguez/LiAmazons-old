@@ -1,0 +1,15 @@
+.board {
+    display: grid;
+}
+
+.size6 {
+    grid-template-columns: repeat(6, 80vh / 6)
+}
+
+.size8 {
+    grid-template-columns: repeat(8, 80vh / 8)
+}
+
+.size10 {
+    grid-template-columns: repeat(10, 8vh)
+}
