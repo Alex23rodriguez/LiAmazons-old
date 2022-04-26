@@ -17,6 +17,8 @@ const Game = () => {
         .catch((e) => {
           console.error(e);
         });
+    } else if (id === "local") {
+      setGame({ moves: [] });
     } else {
       console.log(`the id param is ${id}`);
       GameDataService.get(id)
